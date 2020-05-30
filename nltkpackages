@@ -1,0 +1,7 @@
+python -m nltk.downloader movie_reviews
+python -m nltk.downloader stopwords
+python -m nltk.downloader brown
+python -m nltk.downloader treebank
+python -m nltk.downloader subjectivity
+python -m nltk.downloader conll2000
+python -m nltk.downloader wordnet
