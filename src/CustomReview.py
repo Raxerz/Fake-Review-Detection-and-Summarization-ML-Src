@@ -221,7 +221,7 @@ def predict(domain="cellphones"):
 	# Make predictions on validation dataset
 	knn = KNeighborsClassifier()
 	knn.fit(X_train, Y_train)
-	pickle.dump( knn, open( "save.p", "wb" ) )
+	pickle.dump( knn, open( ML_MODELS_PATH + "/save.p", "wb" ) )
 	predictions = knn.predict(X_validation)
 	print(accuracy_score(Y_validation, predictions))
 	print(confusion_matrix(Y_validation, predictions))
@@ -241,7 +241,7 @@ def pred():
 	dom_choice=int(input())
 
 	domain_list=["CellPhones","Movies&TV","Electronics","Clothes&Acc","VideoGames","Beauty","Automotive","Musical-Instruments"]
-	knn = pickle.load(open( "save.p", "rb" ))
+	knn = pickle.load(open( ML_MODELS_PATH + "/save.p", "rb" ))
 	X_validation = parse_custom(domain_list[dom_choice-1])
 	predictions = knn.predict(X_validation)
 	print("This review is " + str(fakeness) + "% fake")
@@ -254,7 +254,7 @@ def pred():
 if __name__=='__main__':
 	if not os.path.exists(ML_GENERATED_CSV_PATH + '/custom_review.csv'):
 		parse()
-	if not os.path.exists('save.p'):
+	if not os.path.exists(ML_MODELS_PATH + '/save.p'):
 		predict()
 	else:
 		pred()
