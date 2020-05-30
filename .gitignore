@@ -141,11 +141,3 @@ cython_debug/
 
 # MacOS
 .DS_Store
-
-# Other dataset files
-*.json.gz
-*.csv
-*.csv~
-*.npz
-*.npz~
-*.p
