@@ -6,6 +6,8 @@ import pickle
 from constants import *
 from numpy import savez_compressed, load
 
+DEBUG = False
+
 def parse(path, domain):
 	writepath = REVIEWS_PARSED_PATH + '/' + domain.lower() + '.npz'
 	if not os.path.exists(writepath):
@@ -31,8 +33,16 @@ def parse(path, domain):
 			else:
 				break
 		savez_compressed(writepath, brand_reviews)
+		print("Reviews parsed successfully for " + domain.lower())
+	else:
+		if DEBUG:
+			print("Reviews are parsed and available for " + domain.lower())
 
-if __name__ == '__main__':
+def parseReviews():
 	for file in os.listdir(REVIEWS_RAW_PATH):
 		if file.endswith(".json.gz"):
 			parse(os.path.join(REVIEWS_RAW_PATH, file), file.split('.json.gz')[0])
+
+
+if __name__ == '__main__':
+	parseReviews()

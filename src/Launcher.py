@@ -1,5 +1,11 @@
 import SummaryLauncher
 
+import reviewsparser
+import brandnamesparser
+
+reviewsparser.parseReviews()
+brandnamesparser.extractBrandNames()
+
 print("1. Summarization")
 print("2. Fake review detection")
 ch = int(input("Enter your choice\n"))

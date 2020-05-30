@@ -8,6 +8,8 @@ import numpy as np
 from constants import *
 from numpy import savez_compressed, load
 
+DEBUG = False
+
 def parse(path, domain):
 	writepath = BRANDS_PARSED_PATH + '/' + domain.lower() + '.npz'
 	if not os.path.exists(writepath):
@@ -26,8 +28,15 @@ def parse(path, domain):
 					brands[json_obj["brand"]] = []
 				brands[json_obj["brand"]].append(prod)
 		savez_compressed(writepath, brands)
+		print("Brand names extracted successfully for " + domain.lower())
+	else:
+		if DEBUG:
+			print("Brand names are parsed and available for " + domain.lower())
 
 if __name__ == '__main__':
+	extractBrandNames()
+
+def extractBrandNames():
 	for file in os.listdir(BRANDS_RAW_PATH):
 		if file.endswith(".json.gz"):
 			parse(os.path.join(BRANDS_RAW_PATH, file), file.split('.json.gz')[0])
